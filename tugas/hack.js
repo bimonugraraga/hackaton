@@ -19,7 +19,7 @@ let playlist = [
     title: "ok4",
     band: "band4"
   },
-  ""
+  
 ]
 
 let acak = shuffle(playlist)
@@ -62,7 +62,8 @@ function nextMusic(){
   musik.src = acak[index].song
   musik.play()
 
- 
+  let data = document.getElementById("data")
+  data.innerHTML = totalPoint
   if (index === acak.length -1){
     totalPoint = totalPoint
     alert("HORE\nPoint Anda:" + totalPoint)
@@ -108,4 +109,7 @@ function help(){
     }
 }
 
+function getName(){
+  let name = document.getElementById("inputNama").value
 
+}
