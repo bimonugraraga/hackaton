@@ -59,8 +59,7 @@ function generateMusic(){
 
 
 function nextMusic(){
-  let userAnswer = document.getElementById("user-answer").value
-  userAnswer=""
+  
   index++
 
   musik.src = acak[index].song
@@ -83,6 +82,7 @@ function getAnswer(){
   let answer = acak[index].title
 
   let userAnswer = document.getElementById("user-answer").value
+
 
   if (!userAnswer){
     alert("Harus diisi")
@@ -141,6 +141,7 @@ function getName(){
   let namaPeserta = inputNama.value
   localStorage.setItem("nama", namaPeserta)
   console.log(namaPeserta)
+  
   return namaPeserta
 }
 function skorAnda(){
