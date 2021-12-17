@@ -1,22 +1,22 @@
 let playlist = [
   {
-    song: "lagu1.mp3",
-    title: "ok1",
-    band: "band1"
+    song: "diatasnormal.mp3",
+    title: "di atas normal",
+    band: "peterpan"
   },
   {
-    song: "lagu2.mp3",
-    title: "ok2",
-    band: "band2"
+    song: "dragonball.mp3",
+    title: "dragon ball",
+    band: "goku"
   },
   {
-    song: "lagu3.mp3",
-    title: "ok3",
-    band: "band3"
+    song: "pejantantangguh.mp3",
+    title: "pejantan tangguh",
+    band: "sheila on 7"
   },
   {
-    song: "lagu4.mp3",
-    title: "ok4",
+    song: "wavinflag.mp3",
+    title: "wavin flag",
     band: "band4"
   },
   
@@ -24,13 +24,13 @@ let playlist = [
 
 let acak = shuffle(playlist)
 acak.push("")
-let option = ["tidak1", "tidak2", "tidak3", "tidak4"]
+
 
 let musik = new Audio()
 let index = 0
 let count = 0
 let totalPoint = 0
-let jawaban = 1
+
 
 function shuffle(array) {
   let currentIndex = array.length,  randomIndex;
@@ -55,24 +55,31 @@ function generateMusic(){
   musik.play()
 }
 
+
+
+
 function nextMusic(){
-  
+  let userAnswer = document.getElementById("user-answer").value
+  userAnswer=""
   index++
 
   musik.src = acak[index].song
   musik.play()
+ 
+ 
 
+  
   let data = document.getElementById("data")
   data.innerHTML = totalPoint
   if (index === acak.length -1){
     totalPoint = totalPoint
-    alert("HORE\nPoint Anda:" + totalPoint)
-    window.location.replace('hack2.html')
+    alert(`HORE\nPoint ${localStorage.getItem("nama")}:` + totalPoint)
+    window.location.replace('index.html')
   }
 }
 
 function getAnswer(){
-
+  
   let answer = acak[index].title
 
   let userAnswer = document.getElementById("user-answer").value
@@ -84,10 +91,13 @@ function getAnswer(){
     console.log(answer)
     totalPoint += count
     nextMusic()
+    helping.remove()
+    
 
   } else {
-    alert("Jawaban Salah \n" + "Point : " + totalPoint)
-    window.location.replace('hack2.html')
+    alert(`Jawaban ${localStorage.getItem("nama")} salah \n` + "Point : " + totalPoint)
+    window.location.replace('index.html')
+    
   }
   
   
@@ -95,21 +105,54 @@ function getAnswer(){
   
 }
 
+let sisaHelp = document.getElementById("helpme")
+let parent = document.getElementById("box")
+let helping = document.createElement("BUTTON")
 let countHelp = 2
 function help(){
+  let hitungHelp = 0
 
-    if (countHelp > 0){
-      alert(acak[index].band)
-      totalPoint -= 5
-      console.log(totalPoint, "Help")
-      countHelp--
+  if (countHelp > 0){
+    // alert(acak[index].band)
+    helping.innerHTML = acak[index].band
 
-    } else{
-      alert("HELP HABIS")
+    if (hitungHelp ===0){
+      // document.body.appendChild(helping)
+      console.log("HELP")
+      parent.appendChild(helping)
+      hitungHelp++
     }
+
+    totalPoint -= 5
+    console.log(totalPoint, "Help")
+    countHelp--
+
+    
+
+  } else{
+    alert("HELP HABIS")
+  }
+
+  sisaHelp.innerHTML = countHelp
 }
 
 function getName(){
-  let name = document.getElementById("inputNama").value
+  let inputNama = document.getElementById("inputNama")
+  let namaPeserta = inputNama.value
+  localStorage.setItem("nama", namaPeserta)
+  console.log(namaPeserta)
+  return namaPeserta
+}
+function skorAnda(){
+  let nameIsi = getName()
 
+}
+
+function play(){
+  
+  
+  window.location.replace('hack2.html')
+  getName()
+  let peserta = document.getElementById("namaPeserta")
+  // peserta.innerHTML = `Score ${name}`
 }
